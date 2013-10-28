@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+		<conf TITLE="PollConfig" URL="res/xml/PollConfig.xml" TYPE="XML"/>
+		<conf TITLE="main_content" URL="res/swf/main_content.swf" TYPE="MovieClip"/>
+		<conf TITLE="admin_email" URL="vovchara@ukr.net" TYPE="Email"/>
+		<conf TITLE="mail_title" URL="request_for_banner" TYPE="MailTitle"/>
+</config>

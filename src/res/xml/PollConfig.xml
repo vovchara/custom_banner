@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QUESTIONS>
+	<question NUMBER="0" TITLE="vopros0">
+		<property NAME="otvet00"/>
+		<property NAME="otvet01"/>
+		<property NAME="otvet02"/>
+		<property NAME="otvet03"/>
+	</question>
+	<question NUMBER="1" TITLE="vopros1">
+		<property NAME="otvet10"/>
+		<property NAME="otvet11"/>
+		<property NAME="otvet12"/>
+		<property NAME="otvet13"/>
+	</question>
+	<question NUMBER="2" TITLE="vopros2">
+		<property NAME="otvet20"/>
+		<property NAME="otvet21"/>
+		<property NAME="otvet22"/>
+	</question>
+	<question NUMBER="3" TITLE="vopros3">
+		<property NAME="otvet30"/>
+		<property NAME="otvet31"/>
+	</question>
+</QUESTIONS>
