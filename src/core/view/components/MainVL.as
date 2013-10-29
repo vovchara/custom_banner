@@ -75,5 +75,8 @@ package core.view.components{
 			_okBtn.addEventListener(MouseEvent.CLICK, okBtnClicked);
 			dispatchEvent(new EventTrans(EVENT_EMAIL_ENTERED, 0, _inputTF.text));
 		}
+		public function showFinishFrame():void{
+			(content as MovieClip).gotoAndStop(3);
+		}
 	}
 }
