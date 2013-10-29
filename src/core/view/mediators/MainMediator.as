@@ -45,7 +45,7 @@ package core.view.mediators{
 					_viewLogic.showInputEmail();
 					break;
 				case GeneralNotifications.SHOW_FINISH_FRAME:
-					
+					_viewLogic.showFinishFrame();
 					break;
 			}
 		}
