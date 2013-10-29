@@ -11,11 +11,14 @@ package core.view.components{
 	
 	public class MainVL extends UIViewLogic{
 		public static const EVENT_ANSWER_SELECTED:String="event_answer_selected";
+		public static const EVENT_EMAIL_ENTERED:String="event_email_entered";
 		private var _question:String;
 		private var _answers:Array;
 		private var _questionTextField:TextField;
 		private var _answersTextFArray:Array;
 		private var _buttonsArray:Array;
+		private var _okBtn:SimpleButton;
+		private var _inputTF:TextField;
 		
 		public function MainVL(assetName:String, question:String, answers:Array, nameSpace:String=null){
 			super(assetName, nameSpace);
@@ -41,7 +44,7 @@ package core.view.components{
 				else{
 					(_answersTextFArray[k] as TextField).text='';
 				}
-			} 
+			}
 		}
 		public function initButtons(questionNumber:int, answers:Array):void{
 			_buttonsArray=[];
@@ -61,6 +64,16 @@ package core.view.components{
 			}
 			var buttonIndex:int=int(event.target.name.substr(5,1));
 			dispatchEvent(new EventTrans(EVENT_ANSWER_SELECTED, buttonIndex));
+		}
+		public function showInputEmail():void{
+			(content as MovieClip).gotoAndStop(2);
+			_inputTF=content['input'] as TextField;
+			_okBtn=content['ok_btn'] as SimpleButton;
+			_okBtn.addEventListener(MouseEvent.CLICK, okBtnClicked);
+		}
+		private function okBtnClicked(event:MouseEvent):void{
+			_okBtn.addEventListener(MouseEvent.CLICK, okBtnClicked);
+			dispatchEvent(new EventTrans(EVENT_EMAIL_ENTERED, 0, _inputTF.text));
 		}
 	}
 }

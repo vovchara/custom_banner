@@ -19,13 +19,15 @@ package core.view.mediators{
 		}
 		private function registerListeners():void{
 			_viewLogic.addEventListener (MainVL.EVENT_ANSWER_SELECTED, answerSelected);
-		//	_viewLogic.addEventListener(LobbyViewLogic.EVENT_TUTORIAL_CLICKED, tutorialClickedHandler);
+			_viewLogic.addEventListener (MainVL.EVENT_EMAIL_ENTERED, emailEntered);
 		}
 		private function answerSelected(event:EventTrans):void{
 			var buttonIndex:int=event.getButtonIndex();
 			sendNotification(GeneralNotifications.USER_MADE_CHOISE, buttonIndex);
 		}
-		
+		private function emailEntered(event:EventTrans):void{
+			sendNotification(GeneralNotifications.USER_INFO_READY, event.getAdditionalData() as String);
+		}
 		override public function listNotificationInterests():Array{
 			return [GeneralNotifications.SHOW_NEXT_QUESTION,
 				GeneralNotifications.SHOW_INPUT_EMAIL,
@@ -40,7 +42,7 @@ package core.view.mediators{
 					_viewLogic.initTextFields(indexAndQuestionAndAnswers[1] as String, indexAndQuestionAndAnswers[2] as Array);
 					break;
 				case GeneralNotifications.SHOW_INPUT_EMAIL:
-					
+					_viewLogic.showInputEmail();
 					break;
 				case GeneralNotifications.SHOW_FINISH_FRAME:
 					
