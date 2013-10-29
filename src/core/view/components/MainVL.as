@@ -41,7 +41,7 @@ package core.view.components{
 				else{
 					(_answersTextFArray[k] as TextField).text='';
 				}
-			}
+			} 
 		}
 		public function initButtons(questionNumber:int, answers:Array):void{
 			_buttonsArray=[];
