@@ -1,16 +1,9 @@
 <?php
-$to = "vovchara@ukr.net";
-$subject = ($_POST['senderName']);
-$message = ($_POST['senderMsg']);
-$message .= "\n\n---------------------------\n";
-$message .= "E-mail Sent From: " . $_POST['senderName'] . " <" . $_POST['senderEmail'] . ">\n";
-$headers = "From: " . $_POST['senderName'] . " <" . $_POST['senderEmail'] . ">\n";
-if(@mail($to, $subject, $message, $headers))
-{
-echo "answer=ok";
-} 
-else 
-{
-echo "answer=error";
-}
+    $to = $_POST["to"];
+    $subject = $_POST["subject"];
+    $message = $_POST["message"];
+    $from = "vovchara913@gmail.com";
+    $headers = "From: $from";
+    mail($to,$subject,$message,$headers);
+    echo "Successfully sent";
 ?>

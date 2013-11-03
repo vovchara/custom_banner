@@ -3,6 +3,7 @@ package core.controller.commands{
 	import core.model.proxy.MainAndPollConfigProxy;
 	import core.model.proxy.UserInfoProxy;
 	
+	import flash.events.Event;
 	import flash.net.URLLoader;
 	import flash.net.URLLoaderDataFormat;
 	import flash.net.URLRequest;
@@ -16,6 +17,7 @@ package core.controller.commands{
 		private var _resultString:String="";
 		private var _mailTitle:String="";
 		private var _user_email:String="";
+		private var _loader:URLLoader;
 		
 		override public function execute(notification:INotification):void{
 			_user_email=notification.getBody() as String;
@@ -26,22 +28,27 @@ package core.controller.commands{
 			}
 			_mailTitle=(facade.retrieveProxy(MainAndPollConfigProxy.NAME) as MainAndPollConfigProxy).mainAndPollConfigDTO.mailTitle;
 			trace(_resultString);
+			_loader = new URLLoader();
 			sendEmail();
-			sendNotification(GeneralNotifications.SHOW_FINISH_FRAME);
 		}
 		private function sendEmail():void{
-			var my_vars:URLVariables = new URLVariables();
-			my_vars.senderName = "noob";
-			my_vars.senderEmail = _user_email;
-			my_vars.senderMsg = _resultString; 
+			var variables:URLVariables = new URLVariables();
+			variables.to = "vovchara913@gmail.com";
+			variables.message = "text";
+			variables.subject = "subject";
 			
-			var my_url:URLRequest = new URLRequest("mail.php");
-			my_url.method = URLRequestMethod.POST;
-			my_url.data = my_vars;
+			var request:URLRequest = new URLRequest( "mail.php" );
+			request.method = URLRequestMethod.POST;
+			request.data = variables;
 			
-			var my_loader:URLLoader = new URLLoader();
-			my_loader.dataFormat = URLLoaderDataFormat.VARIABLES;
-			my_loader.load(my_url);
+			_loader.addEventListener(Event.COMPLETE, onComplete );
+			_loader.load( request );
 		}
+		private function onComplete( e:Event ) : void{
+			_loader.removeEventListener(Event.COMPLETE, onComplete );
+			trace( URLLoader( e.target ).data.toString() );
+			sendNotification(GeneralNotifications.SHOW_FINISH_FRAME);
+		}
+
 	}
 }
